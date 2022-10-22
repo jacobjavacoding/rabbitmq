@@ -32,23 +32,7 @@ public class RabbitMQConfig {
 	@Value("${rabbitmq.routing.key}")
 	private String routingKey;
 
-	// spring bean for rabbitmq queue
-	@Bean
-	public Queue queue() {
-		return new Queue(queue);
-	}
-
-	// spring bean for rabbitmq exchange
-	@Bean
-	public TopicExchange exchange() {
-		return new TopicExchange(exchange);
-	}
-
-	// binding between queue and exchange using routing key
-	@Bean
-	public Binding binding() {
-		return BindingBuilder.bind(queue()).to(exchange()).with(routingKey);
-	}
+	
 	
 	@PostConstruct
     public void createQueues() {
@@ -58,10 +42,7 @@ public class RabbitMQConfig {
         
     }
 
-// Spring boot autoconfiguration provides following beans
-	// ConnectionFactory
-	// RabbitTemplate
-	// RabbitAdmin
+
 	
 	
 }
